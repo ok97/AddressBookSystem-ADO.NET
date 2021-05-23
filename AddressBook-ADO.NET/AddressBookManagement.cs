@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -72,7 +73,7 @@ namespace AddressBook_ADO.NET
                             model.AddressBookName = reader.GetString(9);
                             Console.WriteLine("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9}", model.FirstName, model.LastName,
                                 model.Address, model.City, model.State, model.Zip, model.PhoneNumber, model.EmailId, model.AddressBookType, model.AddressBookName);
-                            Console.WriteLine("\n");
+                           // Console.WriteLine("");
                         }
                     }
                     else
@@ -93,6 +94,48 @@ namespace AddressBook_ADO.NET
                 connection.Close(); // Always ensuring the closing of the connection
             }
 
+        }
+        /* UC3:- Ability to insert new Contacts to Address Book 
+         */
+
+        public bool AddDataToTable(AddressBookModel model)
+        {          
+            try
+            {             
+                using (connection) // Using the connection established
+                {                    
+                    SqlCommand command = new SqlCommand("dbo.AddressBookSystemProcedure", connection); // Implementing the stored procedure
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@FirstName", model.FirstName);
+                    command.Parameters.AddWithValue("@LastName", model.LastName);
+                    command.Parameters.AddWithValue("@Address", model.Address);
+                    command.Parameters.AddWithValue("@City", model.City);
+                    command.Parameters.AddWithValue("@State", model.State);
+                    command.Parameters.AddWithValue("@Zip", model.Zip);
+                    command.Parameters.AddWithValue("@PhoneNumber", model.PhoneNumber);
+                    command.Parameters.AddWithValue("@EmailID", model.EmailId);
+                    command.Parameters.AddWithValue("@addressBookType", model.AddressBookType);
+                    command.Parameters.AddWithValue("@addressBookName", model.AddressBookName);
+
+                    connection.Open(); 
+                    var result = command.ExecuteNonQuery();
+                    connection.Close();
+                   
+                    if (result != 0)  //Return the result of the transaction 
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+            }       
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
     }
 }
