@@ -10,7 +10,7 @@ Create procedure dbo.AddressBookSystemProcedure
 	@AddressBookType	varchar(150),
 	@AddressBookName	varchar(150)
 	as begin
-	Insert into AddressBookSystem values(@FirstName,@LastName,@Address,@City,@State,@Zip,@PhoneNumber,@EmailId,@AddressBookType,@AddressBookName)
+	Insert into AddressBookSystem values(@FirstName,@LastName,@Address,@City,@State,@Zip,@PhoneNumber,@EmailId,@AddressBookType,@AddressBookName);
 	End
 
-	
+	drop procedure AddressBookSystemProcedure;
