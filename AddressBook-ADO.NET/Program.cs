@@ -20,8 +20,10 @@ namespace AddressBook_ADO.NET
 
             // AddNewContactDetails(); //UC3
 
-                                                                             // Zip,   FirstName, LastName
             // Console.WriteLine(addressBookManagement.EditContactUsingName("442207", "Ekta", "Kumbhare") ? "Update Record successfully\n" : "Update failed"); //UC4
+
+
+           Console.WriteLine(addressBookManagement.DeleteContactUsingName("Ekta", "Kumbhare") ? "Delete Record successfully\n" : "Delete failed"); //UC5
 
 
 

@@ -173,5 +173,42 @@ namespace AddressBook_ADO.NET
                 connection.Close();
             }
         }
+
+
+
+        /**/
+
+        public bool DeleteContactUsingName(string FirstName, string LastName)
+        {
+            try
+            {
+                using (connection)
+                {
+                    connection.Open();
+                    string query = "delete from dbo.AddressBookSystem where FirstName = @parameter1 and LastName =@parameter2";
+                    SqlCommand command = new SqlCommand(query, connection);// Binding the parameter to the formal parameters
+
+                    command.Parameters.AddWithValue("@parameter1", FirstName);
+                    command.Parameters.AddWithValue("@parameter2", LastName);
+                    
+                    var result = command.ExecuteNonQuery(); // Storing the result of the executed query
+                    connection.Close();
+                    if (result > 0)
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+            }
+
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
     }
 }
