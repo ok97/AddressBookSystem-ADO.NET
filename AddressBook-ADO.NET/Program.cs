@@ -25,7 +25,12 @@ namespace AddressBook_ADO.NET
 
             //Console.WriteLine(addressBookManagement.DeleteContactUsingName("Ekta", "Kumbhare") ? "Delete Record successfully\n" : "Delete failed"); //UC5
 
-           addressBookManagement.RetrieveContactFromCityOrStateName(); //UC6
+          // addressBookManagement.RetrieveContactFromCityOrStateName(); //UC6
+         
+            
+             addressBookManagement.CountByCityOrState(); //UC7
+
+
 
 
 
