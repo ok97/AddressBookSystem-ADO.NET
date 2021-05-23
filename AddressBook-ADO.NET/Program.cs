@@ -16,7 +16,7 @@ namespace AddressBook_ADO.NET
 
            //addressBookManagement.DataBaseConnection(); //UC1
            
-            addressBookManagement.GetAllContact(); //UC2
+          // addressBookManagement.GetAllContact(); //UC2
 
            // AddNewContactDetails(); //UC3
            
